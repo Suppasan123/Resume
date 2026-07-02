@@ -1,0 +1,488 @@
+
+:root {
+  --bg:        #FAF7F3;   /* พื้นหลังครีมอ่อน */
+  --ink:       #1C1210;   /* ตัวอักษรหลัก เกือบดำอมน้ำตาล */
+  --burgundy:  #5C1A21;   /* แดงเลือดหมู - สีหลัก */
+  --burgundy-soft: #8A3B41; /* แดงเลือดหมูอ่อน - รอง */
+  --line:      #E3DAD3;   /* เส้นแบ่งบางๆ */
+  --muted:     #6E635D;   /* ตัวอักษรรอง */
+  --card-bg:  #FFFFFF;
+  --footer-ink: #F3E9E6;
+
+  --transition-theme: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease;
+}
+
+/* =================================================
+   DARK MODE
+   สลับด้วยการเพิ่ม data-theme="dark" ที่ <html>
+   ================================================= */
+html[data-theme="dark"] {
+  --bg:        #17110F;
+  --ink:       #F3EAE5;
+  --burgundy:  #E08A8F;
+  --burgundy-soft: #C96C72;
+  --line:      #352924;
+  --muted:     #B9A9A2;
+  --card-bg:   #211917;
+  --footer-ink: #F3E9E6;
+  --bgh:  #b46262;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+header{
+    margin: 0;
+  background: color-mix(in srgb, var(--bgh) 82%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: var(--transition-theme), box-shadow 0.3s ease;
+
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Inter', sans-serif;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  transition: var(--transition-theme);
+}
+
+h1, h2, h3 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  margin: 0;
+  color: var(--ink);
+}
+
+a {
+  color: inherit;
+}
+
+/* eyebrow label เล็กๆ ตัวพิมพ์ใหญ่ เว้นระยะห่างตัวอักษร
+   ใช้ซ้ำเป็นลายเซ็นของหน้านี้ ก่อนหัวข้อสำคัญทุกจุด */
+.eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--burgundy);
+  margin: 0 0 14px;
+}
+
+.eyebrow.center { text-align: center; }
+.eyebrow.light  { color: #D8B9AE; }
+
+/* =================================================
+   HEADER
+   display: flex — จัดชื่อ + เมนู ให้อยู่คนละฝั่งแนวนอนเดียว
+   ================================================= */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 8%;
+  border-bottom: 1px solid var(--line);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+header.scrolled {
+  box-shadow: 0 6px 20px rgba(28, 18, 16, 0.06);
+}
+
+header .logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+header .logo img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+header nav a {
+  text-decoration: none;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  margin-left: 28px;
+  padding-bottom: 3px;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+header nav a:hover {
+  color: var(--burgundy);
+  border-color: var(--burgundy);
+}
+
+/* =================================================
+   ABOUT ME
+   display: flex — จัดรูปโปรไฟล์ + ข้อความให้อยู่ข้างกัน (1 มิติ)
+   ================================================= */
+.about {
+  display: flex;
+  align-items: center;
+  gap: 64px;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 100px 8% 90px;
+  flex-wrap: wrap;
+}
+
+.profile-pic img {
+  width: 168px;
+  height: 168px;
+  border-radius: 50%;
+  object-fit: cover;
+  filter: grayscale(15%);
+  border: 1px solid var(--line);
+  transition: var(--transition-theme), transform 0.4s ease;
+}
+
+.profile-pic img:hover {
+  transform: scale(1.03);
+}
+
+.about-text {
+  flex: 1;
+  min-width: 280px;
+}
+
+.about-text h1 {
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  line-height: 1.25;
+  margin-bottom: 22px;
+}
+
+.bio {
+  color: var(--muted);
+  max-width: 46ch;
+  font-size: 0.98rem;
+}
+
+/* =================================================
+   BACKGROUND — 3 COLUMNS
+   display: grid — ควบคุมทั้งแถวและคอลัมน์ (2 มิติ)
+   ให้ทุกคอลัมน์กว้างเท่ากันโดยอัตโนมัติ
+   ================================================= */
+.background {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px 8% 110px;
+  border-top: 1px solid var(--line);
+}
+
+.background h2 {
+  text-align: center;
+  font-size: 1.7rem;
+  margin: 30px 0 60px;
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+}
+
+.col {
+  padding: 0 32px;
+  border-left: 1px solid var(--line);
+}
+
+.col:first-child {
+  border-left: none;
+  padding-left: 0;
+}
+
+.col:last-child {
+  padding-right: 0;
+}
+
+.col h3 {
+  font-size: 1.05rem;
+  margin-bottom: 18px;
+  color: var(--burgundy);
+}
+
+.col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.col li {
+  padding: 10px 0;
+  border-top: 1px solid var(--line);
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+.col li:first-child {
+  border-top: none;
+}
+
+/* มือถือ: 3 คอลัมน์ ยุบเป็น 1 คอลัมน์ */
+@media (max-width: 700px) {
+  .columns {
+    grid-template-columns: 1fr;
+  }
+  .col {
+    border-left: none;
+    padding: 0;
+    margin-bottom: 36px;
+  }
+}
+
+/* =================================================
+   FOOTER
+   จุดเน้นเดียวของหน้า: บล็อกสีแดงเลือดหมูทึบ ตัดกับพื้นครีม
+   display: flex — จัดคอลัมน์ Contact / Elsewhere แนวนอน
+   ================================================= */
+footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  background: var(--burgundy);
+  color: #F3E9E6;
+  padding: 60px 8% 30px;
+}
+
+.footer-col {
+  flex: 1;
+  min-width: 180px;
+}
+
+.footer-col p {
+  margin: 0 0 8px;
+  font-size: 0.92rem;
+}
+
+.footer-col a {
+  text-decoration: none;
+  border-bottom: 1px solid rgba(243, 233, 230, 0.35);
+}
+
+.footer-col a:hover {
+  border-color: #F3E9E6;
+}
+
+.copyright {
+  width: 100%;
+  text-align: center;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  color: #D8B9AE;
+  border-top: 1px solid rgba(243, 233, 230, 0.18);
+  padding-top: 22px;
+  margin-top: 30px !important;
+}
+
+/* =================================================
+   THEME TOGGLE BUTTON (dark mode)
+   ================================================= */
+#theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  margin-left: 28px;
+  padding: 0;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  transition: var(--transition-theme), transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+#theme-toggle:hover {
+  background: var(--line);
+  color: var(--burgundy);
+  transform: rotate(15deg);
+}
+
+#theme-toggle:active {
+  transform: scale(0.9);
+}
+
+#theme-toggle .icon-moon { display: none; }
+#theme-toggle .icon-sun  { display: block; }
+
+html[data-theme="dark"] #theme-toggle .icon-moon { display: block; }
+html[data-theme="dark"] #theme-toggle .icon-sun  { display: none; }
+
+@media (max-width: 480px) {
+  #theme-toggle { margin-left: 16px; }
+}
+
+/* =================================================
+   BACK TO TOP BUTTON
+   ================================================= */
+#back-to-top {
+  position: fixed;
+  right: 28px;
+  bottom: 28px;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: none;
+  background: var(--burgundy);
+  color: #F3E9E6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(28, 18, 16, 0.14);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease, background 0.2s ease;
+  z-index: 40;
+}
+
+#back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+#back-to-top:hover {
+  background: var(--burgundy-soft);
+}
+
+#back-to-top:active {
+  transform: scale(0.92);
+}
+
+@media (max-width: 480px) {
+  #back-to-top {
+    right: 16px;
+    bottom: 16px;
+    width: 42px;
+    height: 42px;
+  }
+}
+
+/* =================================================
+   SCROLL-REVEAL ANIMATION
+   ธาตุที่ใส่ class .reveal จะค่อยๆ เลื่อนขึ้น+จางเข้า
+   เมื่อเลื่อนหน้าจอมาถึง (จัดการด้วย script.js)
+   ================================================= */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* เชื่อมโยงเมนูที่กำลัง active ตามตำแหน่ง scroll */
+header nav a.active {
+  color: var(--burgundy);
+  border-color: var(--burgundy);
+}
+
+/* =================================================
+   SCROLL PROGRESS BAR
+   เส้นบางๆ ด้านบนสุด แสดง % ที่เลื่อนอ่านหน้าไปแล้ว
+   ================================================= */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2.5px;
+  width: 0%;
+  background: var(--burgundy);
+  z-index: 60;
+  transition: width 0.08s linear, background 0.2s ease;
+}
+
+/* =================================================
+   TYPING EFFECT (ชื่อบน hero)
+   ================================================= */
+.typed-cursor::after {
+  content: '';
+  display: inline-block;
+  width: 2px;
+  height: 0.85em;
+  margin-left: 3px;
+  background: var(--burgundy);
+  vertical-align: -0.1em;
+  animation: blink-cursor 1s step-end infinite;
+}
+
+.typed-cursor.done::after {
+  animation: blink-cursor 1s step-end infinite;
+}
+
+@keyframes blink-cursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* =================================================
+   COPY-TO-CLIPBOARD FIELDS (Contact)
+   คลิกที่อีเมล/เบอร์โทร เพื่อคัดลอก — แบบมินิมอล ไม่มีปุ่มเพิ่ม
+   ================================================= */
+.copy-field {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  width: fit-content;
+  border-bottom: 1px dashed rgba(243, 233, 230, 0.3);
+  transition: border-color 0.2s ease, opacity 0.2s ease;
+}
+
+.copy-field:hover {
+  border-color: rgba(243, 233, 230, 0.8);
+}
+
+.copy-field::before {
+  content: '';
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+  opacity: 0.55;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2'%3E%3Crect x='9' y='9' width='11' height='11' rx='1.5'/%3E%3Cpath d='M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1'/%3E%3C/svg%3E") no-repeat center / contain;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2'%3E%3Crect x='9' y='9' width='11' height='11' rx='1.5'/%3E%3Cpath d='M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1'/%3E%3C/svg%3E") no-repeat center / contain;
+}
+
+.copy-field.copied::after {
+  content: 'คัดลอกแล้ว';
+  position: absolute;
+  left: calc(100% + 10px);
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--footer-ink);
+  opacity: 0.85;
+  white-space: nowrap;
+}

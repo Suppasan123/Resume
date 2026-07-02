@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ชื่อ นามสกุล — Resume</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- แถบแสดงความคืบหน้าการเลื่อนหน้า (บางๆ ด้านบนสุด) -->
+  <div id="scroll-progress"></div>
+
+  <!-- ============================================= -->
+  <!-- HEADER: ชื่อ + เมนูนำทาง -->
+  <!-- ============================================= -->
+  <header>
+    <div class="logo">
+     <img src="Logo.png" alt="โลโก้">
+      ศุภสัณห์ นัสฐาน
+    </div>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#background">Background</a>
+      <a href="#contact">Contact</a>
+      <button id="theme-toggle" aria-label="สลับโหมดมืด/สว่าง" title="สลับโหมดมืด/สว่าง">
+        <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
+    </nav>
+  </header>
+
+  <!-- ============================================= -->
+  <!-- MAIN CONTENT -->
+  <!-- ============================================= -->
+  <main>
+
+    <!-- ---------- ABOUT ME SECTION ---------- -->
+    <section class="about" id="about">
+      <div class="profile-pic">
+        <!-- 🔧 แก้ตรงนี้: เปลี่ยน src เป็นรูปโปรไฟล์จริงของคุณ -->
+        <!-- วางไฟล์รูป (เช่น profile.jpg) ไว้ในโฟลเดอร์เดียวกับ index.html -->
+        <img src="Aonggg.jpg" alt="รูปโปรไฟล์ของ ศุภสัณห์ นัสฐาน">
+      </div>
+      <div class="about-text">
+        <p class="eyebrow">Introduction</p>
+        <!-- 🔧 หัวเรื่องหลักของหน้า (มีได้แค่ h1 เดียวในทั้งหน้า) -->
+        <h1>สวัสดี ผมชื่อ<br><span id="typed-name" class="typed-cursor" data-full-text="ชื่อ นามสกุล"></span></h1>
+        <p class="bio">
+          <!-- 🔧 แก้ตรงนี้: เขียนแนะนำตัวสั้นๆ 2-4 ประโยค
+               เช่น เรียนคณะ/สาขาอะไร สนใจด้านไหน เป้าหมายอนาคต -->
+          นักศึกษาสาขาวิศวกรรมคอมพิวเตอร์ มหาวิทยาลัยวลัยลักษณ์
+          สนใจด้านการพัฒนาเว็บแอปพลิเคชันและซอฟต์แวร์
+          กำลังเรียนรู้ HTML, CSS และ JavaScript
+        </p>
+      </div>
+    </section>
+
+    <!-- ---------- BACKGROUND: 3 COLUMNS ---------- -->
+    <section class="background" id="background">
+      <p class="eyebrow center">Background</p>
+      <h2>What I Bring</h2>
+
+      <div class="columns">
+
+        <!-- คอลัมน์ที่ 1: Skills -->
+        <article class="col">
+          <h3>Skills</h3>
+          <ul>
+            <!-- 🔧 แก้ตรงนี้: ใส่ทักษะของคุณ เพิ่ม/ลบ <li> ได้ตามต้องการ -->
+            <li>HTML / CSS / JavaScript</li>
+            <li>Python</li>
+            <li>Git &amp; GitHub</li>
+            <li>Figma</li>
+          </ul>
+        </article>
+
+        <!-- คอลัมน์ที่ 2: Experience -->
+        <article class="col">
+          <h3>Experience</h3>
+          <ul>
+            <!-- 🔧 แก้ตรงนี้: ใส่ประสบการณ์ทำงาน/ฝึกงาน/กิจกรรม -->
+            <li>ฝึกงานบริษัท ABC (ปี 2568)</li>
+            <li>สมาชิกชมรมคอมพิวเตอร์</li>
+            <li>ผู้ช่วยสอนวิชา Web Dev</li>
+          </ul>
+        </article>
+
+        <!-- คอลัมน์ที่ 3: Projects -->
+        <article class="col">
+          <h3>Projects</h3>
+          <ul>
+            <!-- 🔧 แก้ตรงนี้: ใส่ผลงาน/โปรเจกต์ที่เคยทำ -->
+            <li>เว็บไซต์ระบบจองห้องประชุม</li>
+            <li>แอปสรุปโน้ตด้วย AI</li>
+            <li>เกม Quiz ออนไลน์</li>
+          </ul>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================= -->
+  <!-- FOOTER: ข้อมูลติดต่อ -->
+  <!-- ============================================= -->
+  <footer id="contact">
+    <div class="footer-col">
+      <p class="eyebrow light">Contact</p>
+      <!-- 🔧 แก้ตรงนี้: ใส่อีเมลจริงของคุณ -->
+      <p class="copy-field" data-copy="youremail@example.com" title="คลิกเพื่อคัดลอก">youremail@example.com</p>
+      <!-- 🔧 แก้ตรงนี้: ใส่เบอร์โทรจริง (หรือลบทิ้งถ้าไม่อยากใส่) -->
+      <p class="copy-field" data-copy="08x-xxx-xxxx" title="คลิกเพื่อคัดลอก">08x-xxx-xxxx</p>
+    </div>
+    <div class="footer-col">
+      <p class="eyebrow light">Elsewhere</p>
+      <!-- 🔧 แก้ตรงนี้: ใส่ลิงก์ GitHub / LinkedIn จริงของคุณ -->
+      <p><a href="https://github.com/Suppasan123" target="_blank">GitHub</a></p>
+      <p><a href="#">LinkedIn</a></p>
+    </div>
+    <p class="copyright">&copy; 2026 ชื่อ นามสกุล</p>
+  </footer>
+
+  <!-- ปุ่ม Back to Top -->
+  <button id="back-to-top" aria-label="กลับขึ้นด้านบน" title="กลับขึ้นด้านบน">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="12" y1="19" x2="12" y2="5"></line>
+      <polyline points="6 11 12 5 18 11"></polyline>
+    </svg>
+  </button>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
